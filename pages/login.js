@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import firebase from "../firebase";
 import { useRouter } from "next/router";
 import Form from "../components/Form";
@@ -20,7 +21,7 @@ const Login = () => {
       console.log("user", user);
       return user;
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   };
 
@@ -33,7 +34,7 @@ const Login = () => {
       console.log("user", user);
       return user;
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   };
 
