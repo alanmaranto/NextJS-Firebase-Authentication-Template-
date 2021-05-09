@@ -11,8 +11,31 @@ const Login = () => {
 
   const router = useRouter();
 
-  const register = () => {};
-  const login = () => {};
+  const register = async () => {
+    try {
+      const user = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(registerEmail, registerPassword);
+
+      console.log("user", user);
+      return user;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const login = async () => {
+    try {
+      const user = await firebase
+        .auth()
+        .signInWithEmailAndPassword(loginEmail, loginPassword);
+
+      console.log("user", user);
+      return user;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="container">
