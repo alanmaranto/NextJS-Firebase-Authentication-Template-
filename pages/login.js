@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import Form from "../components/Form";
 
 const Login = () => {
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("alanbuyer@gmail.com");
+  const [loginPassword, setLoginPassword] = useState("demodemo");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
