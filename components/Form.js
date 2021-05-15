@@ -30,7 +30,7 @@ const Form = ({
     </div>
 
     <div>
-      <button className="btn btn-primary" onClick={handleSubmit}>
+      <button className="btn btn-primary" onClick={() => handleSubmit}>
         {btnName}
       </button>
     </div>
