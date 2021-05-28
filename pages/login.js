@@ -8,7 +8,7 @@ import { GoogleOutlined } from "@ant-design/icons";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("alanbuyer@gmail.com");
-  const [loginPassword, setLoginPassword] = useState("demodemo");
+  const [loginPassword, setLoginPassword] = useState("demodemo1");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
@@ -21,6 +21,7 @@ const Login = () => {
         .createUserWithEmailAndPassword(registerEmail, registerPassword);
 
       console.log("user", user);
+      router.push("/");
       return user;
     } catch (error) {
       toast.error(error.message);
@@ -28,12 +29,15 @@ const Login = () => {
   };
 
   const login = async () => {
+    console.log("entre");
     try {
       const user = await firebase
         .auth()
         .signInWithEmailAndPassword(loginEmail, loginPassword);
 
       console.log("user", user);
+      router.push("/");
+
       return user;
     } catch (error) {
       toast.error(error.message);
@@ -45,7 +49,8 @@ const Login = () => {
       const user = await firebase
         .auth()
         .signInWithPopup(new firebase.auth.GoogleAuthProvider());
-        console.log(user)
+      console.log(user);
+      router.push('/')
       return user;
     } catch (error) {
       toast.error(error.message);
