@@ -9,7 +9,7 @@ const New = () => {
 export async function getServerSideProps(context) {
   const cookies = parseCookies(context);
   console.log("nookies", cookies);
-  const response = await axios.get("http://localhost:4000/private-route", {
+  const response = await axios.get(`${process.env.api}/private-route`, {
     headers: {
       token: cookies.token,
     },

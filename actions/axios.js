@@ -2,11 +2,11 @@ import axios from "axios";
 import firebase from "../firebase";
 
 export const axiosPublic = axios.create({
-  baseURL: "http://localhost:4000/",
+  baseURL: process.env.api,
 });
 
 export const axiosAuth = axios.create({
-  baseURL: "http://localhost:4000/",
+  baseURL:  process.env.api,
 });
 
 axiosAuth.interceptors.request.use(
