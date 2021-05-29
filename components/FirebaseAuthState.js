@@ -3,6 +3,7 @@ import firebase from "../firebase";
 import { UserContext } from "../context/user/index";
 import { userTypes } from "../context/types";
 import { axiosAuth } from "../actions/axios";
+import { setCookie, destroyCookie } from 'nookies'
 
 const FirebaseAuthState = ({ children }) => {
   const { dispatch } = useContext(UserContext);
@@ -13,8 +14,13 @@ const FirebaseAuthState = ({ children }) => {
         dispatch({
           type: userTypes.LOGOUT,
         });
+        destroyCookie(null, 'token');
+        setCookie(null, 'token', '', {});
       } else {
         const { token } = await user.getIdTokenResult();
+        // set token to cookie
+        destroyCookie(null, 'token');
+        setCookie(null, 'token', token, {});
         console.log(token);
         // send this token to backend
         // backend will check if this token is valid (using firebase admin tool)
