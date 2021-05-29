@@ -8,7 +8,7 @@ import { GoogleOutlined } from "@ant-design/icons";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("alanbuyer@gmail.com");
-  const [loginPassword, setLoginPassword] = useState("demodemo1");
+  const [loginPassword, setLoginPassword] = useState("demodemo");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
