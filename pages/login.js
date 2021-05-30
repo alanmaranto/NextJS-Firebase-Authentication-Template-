@@ -4,18 +4,20 @@ import firebase from "../firebase";
 import { useRouter } from "next/router";
 import Form from "../components/Form";
 import { Button } from "antd";
-import { GoogleOutlined } from "@ant-design/icons";
+import { GoogleOutlined, SyncOutlined } from "@ant-design/icons";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("alanbuyer@gmail.com");
   const [loginPassword, setLoginPassword] = useState("demodemo");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
   const register = async () => {
     try {
+      setLoading(true);
       const user = await firebase
         .auth()
         .createUserWithEmailAndPassword(registerEmail, registerPassword);
@@ -25,12 +27,14 @@ const Login = () => {
       return user;
     } catch (error) {
       toast.error(error.message);
+      setLoading(false);
     }
   };
 
   const login = async () => {
     console.log("entre");
     try {
+      setLoading(true);
       const user = await firebase
         .auth()
         .signInWithEmailAndPassword(loginEmail, loginPassword);
@@ -40,6 +44,7 @@ const Login = () => {
 
       return user;
     } catch (error) {
+      setLoading(false);
       toast.error(error.message);
     }
   };
@@ -50,7 +55,7 @@ const Login = () => {
         .auth()
         .signInWithPopup(new firebase.auth.GoogleAuthProvider());
       console.log(user);
-      router.push('/')
+      router.push("/");
       return user;
     } catch (error) {
       toast.error(error.message);
@@ -59,7 +64,9 @@ const Login = () => {
 
   return (
     <div className="container">
-      <h2 className="text-center pt-4 display-4">Login / Register</h2>
+      <h2 className="text-center pt-4 display-4">
+        {loading ? <SyncOutlined spin className="text-danger" /> :" Login / Register"}
+      </h2>
       <Button
         className="mb-3 col-md-6 offset-md-3"
         type="danger"
