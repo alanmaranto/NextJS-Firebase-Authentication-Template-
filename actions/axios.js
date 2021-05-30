@@ -16,6 +16,6 @@ axiosAuth.interceptors.request.use(
     return config;
   },
   (err) => {
-    return Promise.reject(error);
+    return Promise.reject(err);
   }
 );
